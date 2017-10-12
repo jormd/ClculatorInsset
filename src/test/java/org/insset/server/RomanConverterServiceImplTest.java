@@ -92,6 +92,39 @@ public class RomanConverterServiceImplTest {
         
        
     }
+    
+    @Test
+    public void testConvertDecimalToRoman() {
+        String res;
+        res = this.romanConverter.convertDecimalToRoman(1000);
+        
+        assertEquals("M", res);
+        
+        res = this.romanConverter.convertDecimalToRoman(1002);
+        
+        assertEquals("MII", res);
+        
+        res = this.romanConverter.convertDecimalToRoman(100);
+        
+        assertEquals("C", res);
+        
+        res = this.romanConverter.convertDecimalToRoman(1900);
+        
+        assertEquals("MCM", res);
+        
+        res = this.romanConverter.convertDecimalToRoman(1499);
+        
+        assertEquals("MCDXCIX", res);
+        
+        res = this.romanConverter.convertDecimalToRoman(5);
+        
+        assertEquals("V", res);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConvertDecimalToRomanException(){
+        String res = this.romanConverter.convertDecimalToRoman(-1);
+    }
 
     /**
      * Test of convertArabeToRoman method, of class RomanConverterServiceImpl.
@@ -107,5 +140,7 @@ public class RomanConverterServiceImplTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }*/
+    
+    
     
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.TreeMap;
 import org.insset.client.service.RomanConverterService;
 
 /**
@@ -92,5 +93,41 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
         //Implement your code
         return new String("XVXX");
     }
+    
+    
+    
+    public String convertDecimalToRoman(int nbr) throws IllegalArgumentException {
+        
+        if(nbr != (int)nbr) {
+            throw new IllegalArgumentException("Veuillez entrer un nombre entier");
+        }
+        if(nbr<=0 || nbr>=2000){
+            throw new IllegalArgumentException("Veuillez entrer un nombre valide: entre [1-2000] et positif");
+        }
+        
+        TreeMap<Integer, String> roman = new TreeMap<>();
 
+        roman.put(1000, "M");
+        roman.put(900, "CM");
+        roman.put(500, "D");
+        roman.put(400, "CD");
+        roman.put(100, "C");
+        roman.put(90, "XC");
+        roman.put(50, "L");
+        roman.put(40, "XL");
+        roman.put(10, "X");
+        roman.put(9, "IX");
+        roman.put(5, "V");
+        roman.put(4, "IV");
+        roman.put(1, "I");
+
+        String res = "";
+        for (int i = nbr; i > 0; i=i) {
+            int l =  roman.floorKey(i);
+            res += roman.get(l);
+            i = i - l;
+        }
+        return res;
+            
+    }
 }
