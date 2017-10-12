@@ -66,6 +66,12 @@ public class FieldVerifier {
     
     public static boolean isValidDecimal(Integer nbr) {
         //Implement your code
+        if(nbr != (int)nbr) {
+            return false;
+        }
+        if(nbr<=0 || nbr>=2000){
+            return false;        
+        }
         return true;
     }
 
