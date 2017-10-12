@@ -127,9 +127,15 @@ public class Pourcentage extends Composite{
     
     private void CalculMontantFinal() {
         montant = FieldVerifier.CheckVirgule(montantDepart.getText());
-        if (!FieldVerifier.isNombreDecimalCorrect(Float.parseFloat(montant))) {
+        if (montant.isEmpty() || !FieldVerifier.isNombreDecimalCorrect(Float.parseFloat(montant))) {
             errorLabel.addStyleName("serverResponseLabelError");
             errorLabel.setText("Montant entre 1 et 999 999 svp !");
+            return;
+        }
+        
+        if (pourcentage.getText().isEmpty()) {
+            errorLabel.addStyleName("serverResponseLabelError");
+            errorLabel.setText("Pourcentage entre 1 et 100 svp !");
             return;
         }
         service.CalculMontantFinal(Float.parseFloat(montant), Float.parseFloat(FieldVerifier.CheckVirgule(pourcentage.getText())), new AsyncCallback<Float>() {
@@ -140,7 +146,7 @@ public class Pourcentage extends Composite{
             }
             @Override
             public void onSuccess(Float result) {
-                errorLabel2.setText("");
+                errorLabel.setText("");
                 new DialogBoxInssetPresenter("Calcul du montant final", montant + "€ avec " + pourcentage.getText() + "%", String.valueOf(result) + "€, remise de " + Math.abs((result - Float.parseFloat(montant))) + "€");
             }
         });
@@ -151,9 +157,15 @@ public class Pourcentage extends Composite{
      */
     private void CalculMontantDepart() {
         montant = FieldVerifier.CheckVirgule(montantFinal.getText());
-        if (!FieldVerifier.isNombreDecimalCorrect(Float.parseFloat(montant))) {
+        if (montant.isEmpty() || !FieldVerifier.isNombreDecimalCorrect(Float.parseFloat(montant))) {
             errorLabel2.addStyleName("serverResponseLabelError");
             errorLabel2.setText("Montant entre 1 et 999 999 svp !");
+            return;
+        }
+        
+        if (pourcentage.getText().isEmpty()) {
+            errorLabel2.addStyleName("serverResponseLabelError");
+            errorLabel2.setText("Pourcentage entre 1 et 100 svp !");
             return;
         }
         service.CalculMontantDepart(Float.parseFloat(montant), Float.parseFloat(FieldVerifier.CheckVirgule(pourcentage.getText())), new AsyncCallback<Float>() {
