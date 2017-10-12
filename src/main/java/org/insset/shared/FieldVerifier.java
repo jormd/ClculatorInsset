@@ -1,5 +1,9 @@
 package org.insset.shared;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
@@ -48,16 +52,101 @@ public class FieldVerifier {
      * ensure that usernames, passwords, email addresses, URLs, and other fields
      * have the proper syntax.
      *
-     * @param name the name to validate
+     * @param nbr the name to validate
      * @return true if valid, false if invalid
      */
+    public static boolean isNombreDecimalCorrect(float nbr) {
+        if (nbr < 0 || nbr > 999999) 
+            return false;
+        
+        return true;
+    }
+    
+    public static String CheckVirgule(String t){
+        if (t.contains(","))
+            return t.replace(',', '.');
+        
+        return t;
+    }
+    
     public static boolean isValidDecimal(Integer nbr) {
+
         //Implement your code
+        if(nbr != (int)nbr) {
+            return false;
+        }
+        if(nbr<=0 || nbr>=2000){
+            return false;        
+        }
         return true;
     }
 
     public static boolean isValidRoman(String nbr) {
+        
+        if(nbr.isEmpty() || (nbr == null)){
+            return false;
+        }
+        
+        nbr = nbr.toUpperCase();
+        Map<String, Integer> arab = new HashMap<>();
+        
+        //insertion des différent cas possible avec leur valeur
+       arab.put("M", 0);
+       arab.put("D", 0);
+       arab.put("C", 0);
+       arab.put("L", 0);
+       arab.put("X", 0);
+       arab.put("V", 0);
+       arab.put("I", 0);
+       arab.put("CM", 0);
+       arab.put("CD", 0);
+       arab.put("XC", 0);
+       arab.put("XL", 0);
+       arab.put("IX", 0);
+       arab.put("IV", 0);
         //Implement your code
+         
+                 
+        int sizeNbr = nbr.length();      
+        boolean stop = false;
+        int i = 0;
+        
+        
+
+        //boucle sur le nombre de caractère
+        while(i<sizeNbr && !stop){
+            
+            if(i+1<sizeNbr){
+                if(arab.containsKey(nbr.substring(i, i+2))){
+                    arab.put(nbr.substring(i, i+2), arab.get(nbr.substring(i, i+2)).intValue() + 1);
+                    i +=2;
+                }
+                else if(!arab.containsKey(nbr.substring(i, i+1))){
+                    stop = true;
+                    break;
+                }
+                else{
+                    arab.put(nbr.substring(i, i+1), arab.get(nbr.substring(i, i+1)).intValue() + 1);
+                    i++;
+                } 
+            }
+            else{
+                if(!arab.containsKey(nbr.substring(i, i+1))){
+                    stop = true;
+                    break;
+                }
+                else{
+                    arab.put(nbr.substring(i, i+1), arab.get(nbr.substring(i, i+1)).intValue() + 1);
+                    i++;
+                }
+            }
+  
+        }
+
+        if(stop || arab.get("M")>1 || arab.get("D")>1 || arab.get("C")>3 || arab.get("L")>1 || arab.get("X")>3 || arab.get("V")>1 || arab.get("I")>3){
+            return false;
+        }
+       
         return true;
     }
 

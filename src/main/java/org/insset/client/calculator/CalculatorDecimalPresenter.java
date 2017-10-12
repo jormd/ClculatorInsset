@@ -86,6 +86,7 @@ public class CalculatorDecimalPresenter extends Composite {
             @Override
             public void onClick(ClickEvent event) {
                 convertRomanToArabe();
+
             }
 
         });
@@ -123,9 +124,10 @@ public class CalculatorDecimalPresenter extends Composite {
      * call server
      */
     private void convertRomanToArabe() {
+        errorLabelRToA.setText("");
         if (!FieldVerifier.isValidRoman(valR.getText())) {
             errorLabelRToA.addStyleName("serverResponseLabelError");
-            errorLabelRToA.setText("Format incorect");
+            errorLabelRToA.setText("Format incorect, il doit contenir des chiffres romain correct infèrieur à 1999");
             return;
         }
         service.convertRomanToArabe(valR.getText(), new AsyncCallback<Integer>() {
