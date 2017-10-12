@@ -94,36 +94,36 @@ public class RomanConverterServiceImplTest {
     }
     
     @Test
-    public void testConvertDecimalToRoman() {
+    public void testConvertArabeToRoman() {
         String res;
-        res = this.romanConverter.convertDecimalToRoman(1000);
+        res = this.romanConverter.convertArabeToRoman(1000);
         
         assertEquals("M", res);
         
-        res = this.romanConverter.convertDecimalToRoman(1002);
+        res = this.romanConverter.convertArabeToRoman(1002);
         
         assertEquals("MII", res);
         
-        res = this.romanConverter.convertDecimalToRoman(100);
+        res = this.romanConverter.convertArabeToRoman(100);
         
         assertEquals("C", res);
         
-        res = this.romanConverter.convertDecimalToRoman(1900);
+        res = this.romanConverter.convertArabeToRoman(1900);
         
         assertEquals("MCM", res);
         
-        res = this.romanConverter.convertDecimalToRoman(1499);
+        res = this.romanConverter.convertArabeToRoman(1499);
         
         assertEquals("MCDXCIX", res);
         
-        res = this.romanConverter.convertDecimalToRoman(5);
+        res = this.romanConverter.convertArabeToRoman(5);
         
         assertEquals("V", res);
     }
     
     @Test(expected = IllegalArgumentException.class)
-    public void testConvertDecimalToRomanException(){
-        String res = this.romanConverter.convertDecimalToRoman(-1);
+    public void testConvertArabeToRomanException(){
+        String res = this.romanConverter.convertArabeToRoman(-1);
     }
 
     /**

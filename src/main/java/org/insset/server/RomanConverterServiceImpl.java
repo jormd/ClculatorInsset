@@ -90,13 +90,6 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public String convertArabeToRoman(Integer nbr) throws IllegalArgumentException {
-        //Implement your code
-        return new String("XVXX");
-    }
-    
-    
-    
-    public String convertDecimalToRoman(int nbr) throws IllegalArgumentException {
         
         if(nbr != (int)nbr) {
             throw new IllegalArgumentException("Veuillez entrer un nombre entier");
@@ -131,3 +124,6 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
             
     }
 }
+    
+    
+    
