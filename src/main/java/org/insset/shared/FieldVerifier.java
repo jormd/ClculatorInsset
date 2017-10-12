@@ -118,10 +118,7 @@ public class FieldVerifier {
                     i++;
                 }
             }
-            
-           
-
-            
+  
         }
 
         if(stop || arab.get("M")>1 || arab.get("D")>1 || arab.get("C")>3 || arab.get("L")>1 || arab.get("X")>3 || arab.get("V")>1 || arab.get("I")>3){
