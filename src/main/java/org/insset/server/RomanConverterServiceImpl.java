@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import org.insset.client.service.RomanConverterService;
+import org.insset.shared.FieldVerifier;
 
 /**
  *
@@ -36,9 +37,9 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
     @Override
     public Integer convertRomanToArabe(String nbr) throws IllegalArgumentException {
         //Implement your code
-        if(nbr.isEmpty()){
-            throw new IllegalArgumentException("Veuillez rentrer une valeur");
-        }
+        
+        if(FieldVerifier.isValidRoman(nbr)){
+            
         
         nbr = nbr.toUpperCase();
         Map<String, Integer> arab = new HashMap<>();
@@ -85,6 +86,10 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
 
        
         return res;
+        }
+        else{
+            throw new IllegalArgumentException("Veuillez rentrer une valeur");
+        }
     }
 
     @Override
