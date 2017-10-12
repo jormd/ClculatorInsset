@@ -149,6 +149,8 @@ public class FieldVerifierTest {
         
         assertEquals(false, fiel.isValidRoman("LL"));
         
+        assertEquals(false, fiel.isValidRoman("AA"));
+        
         assertEquals(true, fiel.isValidRoman("L"));
         
         assertEquals(false, fiel.isValidRoman(""));
