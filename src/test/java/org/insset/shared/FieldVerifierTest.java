@@ -117,16 +117,20 @@ public class FieldVerifierTest {
     /**
      * Test of isValidDecimal method, of class FieldVerifier.
      */
-    //@Test
-    /*public void testIsValidDecimal() {
-        System.out.println("isValidDecimal");
-        Integer nbr = null;
-        boolean expResult = false;
-        boolean result = FieldVerifier.isValidDecimal(nbr);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
+    @Test
+    public void testIsValidDecimal() {
+        
+        assertEquals(true, fiel.isValidDecimal(1999));
+        
+        assertEquals(true, fiel.isValidDecimal(1888));
+        
+        assertEquals(false, fiel.isValidDecimal(-5));
+        
+        assertEquals(false, fiel.isValidDecimal(-1250));
+        
+        assertEquals(false, fiel.isValidDecimal(2017));
+
+    }
 
     /**
      * Test of isValidRoman method, of class FieldVerifier.
@@ -148,6 +152,8 @@ public class FieldVerifierTest {
         assertEquals(false, fiel.isValidRoman("XXXX"));
         
         assertEquals(false, fiel.isValidRoman("LL"));
+        
+        assertEquals(false, fiel.isValidRoman("AA"));
         
         assertEquals(true, fiel.isValidRoman("L"));
         

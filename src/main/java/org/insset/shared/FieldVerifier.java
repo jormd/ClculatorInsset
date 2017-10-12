@@ -52,7 +52,7 @@ public class FieldVerifier {
      * ensure that usernames, passwords, email addresses, URLs, and other fields
      * have the proper syntax.
      *
-     * @param name the name to validate
+     * @param nbr the name to validate
      * @return true if valid, false if invalid
      */
     public static boolean isNombreDecimalCorrect(float nbr) {
@@ -70,7 +70,14 @@ public class FieldVerifier {
     }
     
     public static boolean isValidDecimal(Integer nbr) {
+
         //Implement your code
+        if(nbr != (int)nbr) {
+            return false;
+        }
+        if(nbr<=0 || nbr>=2000){
+            return false;        
+        }
         return true;
     }
 
@@ -133,10 +140,7 @@ public class FieldVerifier {
                     i++;
                 }
             }
-            
-           
-
-            
+  
         }
 
         if(stop || arab.get("M")>1 || arab.get("D")>1 || arab.get("C")>3 || arab.get("L")>1 || arab.get("X")>3 || arab.get("V")>1 || arab.get("I")>3){

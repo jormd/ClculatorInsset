@@ -93,7 +93,7 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
             return res;
         }
         else{
-            throw new IllegalArgumentException("Veuillez rentrer une valeur");
+            throw new IllegalArgumentException("Veuillez rentrer une valeur valide");
         }
     }
 
