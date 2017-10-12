@@ -36,7 +36,9 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
     @Override
     public Integer convertRomanToArabe(String nbr) throws IllegalArgumentException {
         //Implement your code
-        
+        if(nbr.isEmpty()){
+            throw new IllegalArgumentException("Veuillez rentrer une valeur");
+        }
         
         nbr = nbr.toUpperCase();
         Map<String, Integer> arab = new HashMap<>();

@@ -80,6 +80,17 @@ public class RomanConverterServiceImplTest {
         res = this.romanConverter.convertRomanToArabe("MCDXCIX");
         
         assertEquals(1499, res);
+        
+        res = this.romanConverter.convertRomanToArabe("MD");
+        
+        assertEquals(1500, res);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConvertRomanToArabeException(){
+        int res = this.romanConverter.convertRomanToArabe("");
+        
+       
     }
 
     /**
