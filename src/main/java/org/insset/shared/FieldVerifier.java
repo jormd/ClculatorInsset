@@ -57,19 +57,26 @@ public class FieldVerifier {
      */
     public static boolean isNombreDecimalCorrect(float nbr) {
         if (nbr < 0 || nbr > 999999) 
-            throw new IllegalArgumentException("Montant entre 1 et 999 999 svp !");
-        else if(String.valueOf(nbr)== null)
-            throw new NumberFormatException("Montant entre 1 et 999 999 svp !");
+            return false;
         
         return true;
     }
     
+    public static String CheckVirgule(String t){
+        if (t.contains(","))
+            return t.replace(',', '.');
+        
+        return t;
+    }
+    
     public static boolean isValidDecimal(Integer nbr) {
+
+        //Implement your code
         if(nbr != (int)nbr) {
             return false;
         }
-        else if (nbr<=0 || nbr>2000) {
-            return false;
+        if(nbr<=0 || nbr>=2000){
+            return false;        
         }
         return true;
     }
@@ -133,10 +140,7 @@ public class FieldVerifier {
                     i++;
                 }
             }
-            
-           
-
-            
+  
         }
 
         if(stop || arab.get("M")>1 || arab.get("D")>1 || arab.get("C")>3 || arab.get("L")>1 || arab.get("X")>3 || arab.get("V")>1 || arab.get("I")>3){

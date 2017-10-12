@@ -39,6 +39,66 @@ public class FieldVerifierTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void testIsVirguleRemplacer() {
+        //Given 
+        String test = "5000,50";
+        
+        //When
+        String result = fiel.CheckVirgule(test);
+        
+        //Then
+        assertEquals("5000.50", result);
+    }
+    
+    @Test
+    public void testIsVirguleNonRemplacer() {
+        //Given 
+        String test = "500.50";
+        
+        //When
+        String result = fiel.CheckVirgule(test);
+        
+        //Then
+        assertEquals("500.50", result);
+    }
+    
+    @Test
+    public void testIsNonbreDecimalOk() {
+        //Given 
+        float test = 5000.50f;
+        
+        //When
+        boolean result = fiel.isNombreDecimalCorrect(test);
+        
+        //Then
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testIsNotNonbreDecimalOk() {
+        //Given 
+        float test = -1818.50f;
+        
+        //When
+        boolean result = fiel.isNombreDecimalCorrect(test);
+        
+        //Then
+        assertFalse(result);
+    }
+    
+    @Test
+    public void testIsNotNonbreDecimalOkOver999999() {
+        //Given 
+        float test = 1000000.50f;
+        
+        //When
+        boolean result = fiel.isNombreDecimalCorrect(test);
+        
+        //Then
+        assertFalse(result);
+    }
 
     /**
      * Test of isValidName method, of class FieldVerifier.
@@ -92,6 +152,8 @@ public class FieldVerifierTest {
         assertEquals(false, fiel.isValidRoman("XXXX"));
         
         assertEquals(false, fiel.isValidRoman("LL"));
+        
+        assertEquals(false, fiel.isValidRoman("AA"));
         
         assertEquals(true, fiel.isValidRoman("L"));
         
