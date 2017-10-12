@@ -41,51 +41,55 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
         if(FieldVerifier.isValidRoman(nbr)){
             
         
-        nbr = nbr.toUpperCase();
-        Map<String, Integer> arab = new HashMap<>();
-        
-        //insertion des différent cas possible avec leur valeur
-       arab.put("M", 1000);
-       arab.put("CM", 900);
-       arab.put("D", 500);
-       arab.put("CD", 400);
-       arab.put("C", 100);
-       arab.put("XC", 90);
-       arab.put("L", 50);
-       arab.put("XL", 40);
-       arab.put("X", 10);
-       arab.put("IX", 9);
-       arab.put("V", 5);
-       arab.put("IV", 4);
-       arab.put("I", 1);
-       
-       int sizeNbr = nbr.length();
-              
-       int res = 0;
-       
-       //boucle sur le nombre de caractère
-       for(int i = 0; i < sizeNbr; i++){ 
-           int val = 0;
+            nbr = nbr.toUpperCase();
+            Map<String, Integer> arab = new HashMap<>();
+
+            //insertion des différent cas possible avec leur valeur
+           arab.put("M", 1000);
+           arab.put("CM", 900);
+           arab.put("D", 500);
+           arab.put("CD", 400);
+           arab.put("C", 100);
+           arab.put("XC", 90);
+           arab.put("L", 50);
+           arab.put("XL", 40);
+           arab.put("X", 10);
+           arab.put("IX", 9);
+           arab.put("V", 5);
+           arab.put("IV", 4);
+           arab.put("I", 1);
+
+           int sizeNbr = nbr.length();
            
-           if(i+1<sizeNbr){
-               
-               //regarde si il existe bien un couple de valeur, si oui on l'ajout
-               if(arab.get(nbr.substring(i, i+2)) != null){
-                  val = arab.get(nbr.substring(i, i+2));
-                  i++;
+
+           int res = 0;
+
+           //boucle sur le nombre de caractère
+           for(int i = 0; i < sizeNbr; i++){ 
+               int val = 0;
+
+               if(i+1<sizeNbr){
+
+                   //regarde si il existe bien un couple de valeur, si oui on l'ajout
+                   if(arab.get(nbr.substring(i, i+2)) != null){
+                      val = arab.get(nbr.substring(i, i+2));
+                      i++;
+                   }
+               }
+
+               if(val == 0){
+                   if(arab.get(nbr.substring(i, i+1)) != null){
+                       res += arab.get(nbr.substring(i, i+1));
+                   }
+
+               }
+               else{
+                   res += val;
                }
            }
-           
-           if(val == 0){
-               res += arab.get(nbr.substring(i, i+1));
-           }
-           else{
-               res += val;
-           }
-       }
 
-       
-        return res;
+
+            return res;
         }
         else{
             throw new IllegalArgumentException("Veuillez rentrer une valeur");
